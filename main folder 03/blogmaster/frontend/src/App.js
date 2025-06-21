@@ -129,7 +129,8 @@ function App() {
     const element = document.createElement("a");
     const file = new Blob([blog], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
-    element.download = blog_${topic.replace(/\s+/g, "_")}.txt;
+    element.download = `blog_${topic.replace(/\s+/g, "_")}.txt`;
+
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
