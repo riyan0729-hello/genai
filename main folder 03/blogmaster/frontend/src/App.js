@@ -69,7 +69,7 @@ function App() {
       }, 8000);
       return () => clearInterval(interval);
     }
-  }, [loading]);
+  }, [loading, jokes]);
 
   useEffect(() => {
     if (blog && !loading) {
