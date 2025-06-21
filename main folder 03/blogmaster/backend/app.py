@@ -50,6 +50,10 @@ def construct_prompt(topic, word_count, language_level, tone=None, audience=None
     prompt += "Make it informative, engaging, and well-structured. Use clear examples, data, or relevant insights where appropriate."
     return prompt
 
+@app.route("/", methods=["GET"])
+def home():
+    return "🚀 BlogMaster Backend is running!"
+
 @app.route("/generate", methods=["POST"])
 def generate_blog():
     try:
@@ -72,7 +76,6 @@ def generate_blog():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
