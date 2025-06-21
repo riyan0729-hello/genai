@@ -1,4 +1,4 @@
 [build]
-  base = "."
+  base = "main folder 03/blogmaster/frontend"
   publish = "build"
   command = "npm run build"
