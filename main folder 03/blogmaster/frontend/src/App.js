@@ -70,7 +70,7 @@ function App() {
       }, 8000);
       return () => clearInterval(interval);
     }
-  }, [loading]); // ✅ `jokes` removed from dependency
+  }, [loading]); // ✅ jokes removed from dependency
 
   useEffect(() => {
     if (blog && !loading) {
@@ -129,17 +129,213 @@ function App() {
     const element = document.createElement("a");
     const file = new Blob([blog], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
-    element.download = `blog_${topic.replace(/\s+/g, "_")}.txt`;
+    element.download = blog_${topic.replace(/\s+/g, "_")}.txt;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
   };
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
-  // [Rest of your JSX remains unchanged...]
   return (
-    // your UI JSX code here
-    <> {/* your full JSX was already perfect, no need to repeat it again */} </>
+    <div className="container">
+      {showConfetti && <div className="confetti"></div>}
+      
+      <header className="app-header">
+        <div className="header-content">
+          <h1>BlogMaster</h1>
+          <p className="subtitle">AI-Powered Blog Generation</p>
+        </div>
+        <div className="theme-toggle">
+          <button className="toggle-btn" onClick={toggleDarkMode}>
+            {darkMode ? "☀ Light" : "🌙 Dark"}
+          </button>
+        </div>
+      </header>
+
+      <section className="input-section">
+        <div className="input-group">
+          <label htmlFor="topic">Blog Topic</label>
+          <input
+            type="text"
+            id="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="Enter your blog topic..."
+          />
+          <div className="sample-topics">
+            <span>Try: </span>
+            {sampleTopics.map((sample, index) => (
+              <button
+                key={index}
+                className="sample-topic"
+                onClick={() => handleSampleTopicClick(sample)}
+              >
+                {sample}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="input-row">
+          <div className="input-group">
+            <label htmlFor="wordCount">Word Count: {wordCount}</label>
+            <input
+              type="range"
+              id="wordCount"
+              min="100"
+              max="2000"
+              step="100"
+              value={wordCount}
+              onChange={(e) => setWordCount(parseInt(e.target.value))}
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="tone">Tone</label>
+            <select
+              id="tone"
+              value={selectedTone}
+              onChange={(e) => setSelectedTone(e.target.value)}
+            >
+              {tones.map((tone) => (
+                <option key={tone.value} value={tone.value}>
+                  {tone.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="input-row">
+          <div className="input-group">
+            <label htmlFor="level">Language Level</label>
+            <select
+              id="level"
+              value={selectedLevel}
+              onChange={(e) => setSelectedLevel(e.target.value)}
+            >
+              {languageLevels.map((level) => (
+                <option key={level.value} value={level.value}>
+                  {level.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="input-group">
+            <label htmlFor="perspective">Perspective</label>
+            <select
+              id="perspective"
+              value={selectedPerspective}
+              onChange={(e) => setSelectedPerspective(e.target.value)}
+            >
+              {perspectives.map((perspective) => (
+                <option key={perspective.value} value={perspective.value}>
+                  {perspective.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="input-row">
+          <div className="input-group">
+            <label htmlFor="structure">Structure</label>
+            <select
+              id="structure"
+              value={selectedStructure}
+              onChange={(e) => setSelectedStructure(e.target.value)}
+            >
+              {structures.map((structure) => (
+                <option key={structure.value} value={structure.value}>
+                  {structure.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="input-group">
+            <label htmlFor="audience">Target Audience</label>
+            <input
+              type="text"
+              id="audience"
+              value={targetAudience}
+              onChange={(e) => setTargetAudience(e.target.value)}
+              placeholder="e.g., Beginners, Professionals..."
+            />
+          </div>
+        </div>
+
+        <button
+          className="generate-btn"
+          onClick={handleGenerate}
+          disabled={loading || !topic.trim()}
+        >
+          {loading ? (
+            <>
+              <div className="spinner"></div>
+              Generating Blog...
+            </>
+          ) : (
+            "Generate Blog"
+          )}
+        </button>
+      </section>
+
+      {loading && (
+        <section className="loading-section">
+          <div className="loading-animation">
+            <div className="loading-dots">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <p className="loading-text">Crafting your perfect blog post...</p>
+            {joke && (
+              <div className="joke-box">
+                <p>💡 While you wait: {joke}</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {blog && !loading && (
+        <section className="blog-output">
+          <div className="blog-header">
+            <h2>Generated Blog</h2>
+            <div className="blog-actions">
+              <button className="action-btn" onClick={handleCopyToClipboard}>
+                📋 Copy
+              </button>
+              <button className="action-btn" onClick={handleDownload}>
+                💾 Download
+              </button>
+            </div>
+          </div>
+          <div className="blog-content">
+            {blog.split('\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {history.length > 0 && (
+        <section className="history-section">
+          <h3>Recent Generations</h3>
+          <ul>
+            {history.slice(-5).reverse().map((item, index) => (
+              <li key={index}>
+                <span className="history-topic">{item.topic}</span>
+                <span className="history-date">{item.date}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <footer className="app-footer">
+        <p>Powered by AI • Built with React</p>
+      </footer>
+    </div>
   );
 }
 
