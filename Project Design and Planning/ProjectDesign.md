@@ -1,10 +1,3 @@
-# BlogMaster
-
-BlogMaster is a web-based platform that uses AI to generate structured blog posts based on user-defined topics and word counts.  
-It helps content creators, marketers, and educators save time and maintain consistent quality.
-
----
-
 ## Tools & Technologies
 
 - **Frontend:** ReactJS for a responsive, interactive user interface.
