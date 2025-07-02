@@ -1,3 +1,4 @@
-# Riyan - Frontend Development & API Integration
+# Suhani - UI/UX Design & Deployment
 
-Riyan took responsibility for Frontend Development and API Integration, building the complete React frontend interface with responsive UI components. He developed intuitive user input forms and seamlessly integrated the frontend with the backend API system. His work included managing request handling and response display functionality, creating an engaging user experience that makes AI-powered blog generation accessible and efficient for all users.
+
+Suhani handled UI/UX Design and Deployment responsibilities, creating the user interface design and optimizing the overall user experience workflow. She identified and resolved bugs throughout the development process while configuring Docker containerization for streamlined deployment. Her role encompassed managing full-stack integration and ensuring system connectivity, delivering a production-ready platform with professional design standards.
