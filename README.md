@@ -147,12 +147,6 @@ npm test
 - **Suhani Srivastava 22BCE2215**: UI/UX design, bug resolution, Docker deployment and full-stack integration
 - **Prisha 22BCE3262**: Project planning, requirement documentation, design feedback and user testing oversight
 
-## Use Cases
-
-- **Content Creators**: Generate blog posts efficiently for consistent publishing
-- **Marketers**: Create brand-aligned content with customizable tone and length
-- **Educators**: Quickly generate explanatory content for academic purposes
-- **Casual Users**: Explore AI-powered content creation for personal projects
 
 ## License
 
