@@ -1,6 +1,6 @@
 # BlogMaster
 
-## IDEATION — BlogMaster
+## IDEATION 
 
 ### Problem
 In today's digital world, individuals and organizations constantly need high-quality blog content to maintain their online presence. However, creating blogs manually is time-consuming, often requires good writing skills, and isn't scalable. This becomes a challenge for marketers, educators, small businesses, and even students.
@@ -14,9 +14,6 @@ Using Google's Gemini 1.5 Flash, a fast and powerful LLM, we built an app that c
 - Match tone, style, and structure
 - Reduce writing effort while maintaining quality
 - Add a human touch with programmer jokes
-
-### Why AI
-LLMs like Gemini are excellent at understanding context and generating natural language. We chose Gemini 1.5 Flash for its speed, efficiency, and API accessibility. It allows users to describe what they want — and get clean, structured, and readable content back instantly.
 
 ### Goal
 To build a smart yet simple web app that helps:
